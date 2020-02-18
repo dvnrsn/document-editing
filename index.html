@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 </head>
 <body>
-<div id="app"></div>
-<script type="text/javascript" src="main.js"></script></body>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "prop-types": "https://unpkg.com/prop-types@15.7.2/prop-types.js",
+        "canopy-styleguide": "https://cdn-integ.canopy.ninja/sofe/canopy-styleguide/devin-remove-white-label/canopy-styleguide.js",
+        "react": "https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js",
+        "lodash": "https://www.unpkg.com/lodash/lodash.min.js",
+        "moment": "https://unpkg.com/moment@2.24.0/moment.js",
+        "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.4.3/system/single-spa.min.js"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.2.3/dist/extras/amd.min.js"></script>
+  <script src="https://unpkg.com/systemjs/dist/extras/named-exports.js"></script>
+  <script src="https://unpkg.com/systemjs/dist/extras/use-default.js"></script>
+  <script>
+    System.import('/main.js')
+  </script>
+  <div id="app"></div>
+</body>
 </html>
