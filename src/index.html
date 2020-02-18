@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 </head>
 <body>
-<div id="app"></div>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "prop-types": "https://unpkg.com/prop-types@15.7.2/prop-types.js",
+        "canopy-styleguide": "https://cdn-integ.canopy.ninja/sofe/canopy-styleguide/6e7d2b5422/canopy-styleguide.js"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+  <script src="https://unpkg.com/systemjs/dist/extras/named-exports.js"></script>
+  <script src="https://unpkg.com/systemjs/dist/extras/use-default.js"></script>
+  <script>
+    System.import('/main.js')
+  </script>
+  <div id="app"></div>
 </body>
 </html>

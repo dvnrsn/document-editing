@@ -1,6 +1,9 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  output: {
+    libraryTarget: "system"
+  },
   module: {
     rules: [
       {
@@ -13,6 +16,8 @@ module.exports = {
     ]
   },
   plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html'
-  })]
+    template: './src/index.html',
+    inject: false,
+  })],
+  externals: [/^canopy-styleguide$/]
 }
