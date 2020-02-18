@@ -19,5 +19,9 @@ module.exports = {
     template: './src/index.html',
     inject: false,
   })],
-  externals: [/^canopy-styleguide$/]
+  externals: [
+    /^canopy-styleguide$/,
+    /^ react$ /,
+    /^react-dom$/,
+  ]
 }
