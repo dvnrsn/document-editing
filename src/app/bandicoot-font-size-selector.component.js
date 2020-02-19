@@ -15,8 +15,6 @@ export default function BandicootFontSizeSelector(props) {
       const click = document.addEventListener('click', e => {
         if (!fontSizeRef.current.contains(e.target)) {
           setPopupOpen(false)
-        } else {
-          console.log('clicked outside')
         }
       })
       return () => document.removeEventListener(click)
