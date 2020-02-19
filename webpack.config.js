@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   output: {
@@ -12,16 +13,25 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      }
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html',
-    inject: false,
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: false,
+    }),
+    new CleanWebpackPlugin()
+  ],
   externals: [
     /^canopy-styleguide$/,
-    /^ react$ /,
+    /^react$/,
+    /^react\/lib.*/,
     /^react-dom$/,
+    /.*react-dom.*/,
   ]
 }

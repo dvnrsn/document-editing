@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {CprButton} from 'canopy-styleguide'
+import MainContainer from './app/main-container.component'
 
-const App = () => <CprButton actionType='primary'>hello</CprButton>
+const App = () => <MainContainer />
 
 ReactDOM.render(<App />, document.getElementById('app'))

@@ -1,0 +1,68 @@
+.document {
+  min-height: 1054px;
+  border-radius: 5px;
+  background-color: white; /*bumble*/
+  border: 1px solid #dfdfdf;
+  box-shadow: 0 10px 30px -24px #b3b3b3;
+}
+.centerContainer {
+  width: 818px;
+  margin: 60px auto;
+}
+.mainContainer {
+  background-color: #f4f5f8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.richTextEditor {
+  margin: 60px;
+  height: 800px;
+  max-height: 1000px;
+  overflow: hidden;
+}
+
+.richTextEditor:focus {
+  outline: none;
+}
+
+.flex {
+    display: flex;
+    padding: 2px;
+  }
+
+/* include border and padding in element width and height */
+* {
+  box-sizing: border-box;
+}
+
+.fontSizeIcon, .fontSizeIcon:hover, .fontSizeIcon:focus {
+  color: var(--cps-color-cool-gray);
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--cps-color-monsoon);
+  height: 24px;
+  width: 24px;
+  line-height: 0;
+}
+
+.fontSizeContainer:hover, .fontSizeContainer:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+.fontSizeContainer {
+  position: relative;
+  padding: 4px;
+}
+
+.cps-dropdown-menu {
+  min-width: 80px;
+}
+
+.active-control-button cps-icon {
+    color: var(--cps-color-primary);
+  }
