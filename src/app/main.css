@@ -7,7 +7,7 @@
 }
 .centerContainer {
   width: 818px;
-  margin: 60px auto;
+  margin: 20px auto;
 }
 .mainContainer {
   background-color: #f4f5f8;
@@ -66,3 +66,13 @@
 .active-control-button cps-icon {
     color: var(--cps-color-primary);
   }
+
+.centerContainer .ck.ck-editor__editable_inline {
+  min-height: 21cm;
+  padding: 1cm 2cm 2cm;
+  border: 1px hsl( 0,0%,82.7% ) solid;
+  border-radius: var(--ck-border-radius);
+  background: white;
+  box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );
+  margin: 0 auto;
+}

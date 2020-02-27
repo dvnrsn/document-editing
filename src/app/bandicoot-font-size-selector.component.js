@@ -8,16 +8,12 @@ export default function BandicootFontSizeSelector(props) {
   const { currentlySelectedFontSize, setSize } = useFontSize({ defaultFontSize: '14px', fontSizes: fontSizes.map(fontSize => `${fontSize}px`) })
   const fontSizeRef = useRef(null)
   const [popupOpen, setPopupOpen] = useState(false)
-  // useClickToClose(fontSizeRef, () => setPopupOpen(false))
 
   useEffect(() => {
     if (fontSizeRef.current) {
-      const click = document.addEventListener('click', e => {
-        if (!fontSizeRef.current.contains(e.target)) {
-          setPopupOpen(false)
-        }
-      })
-      return () => document.removeEventListener(click)
+      const click = e => !fontSizeRef.current.contains(e.target) && setPopupOpen(false)
+      document.addEventListener('click', click)
+      return () => document.removeEventListener('click', click)
     }
   },[fontSizeRef])
 
