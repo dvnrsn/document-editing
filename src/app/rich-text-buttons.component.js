@@ -3,8 +3,10 @@ import { CprButtonIcon } from 'canopy-styleguide'
 import BandicootButton from './bandicoot-button.component'
 import BandicootFontSizeSelector from './bandicoot-font-size-selector.component'
 import { commandMap, tooltipMap, defaultButtons } from './bandicoot.helper'
+import {useImage} from 'bandicoot'
 
 export default function RichTextButtons(props) {
+  const {chooseFile} = useImage()
 
   return (
     <div className='flex'>
@@ -27,6 +29,10 @@ export default function RichTextButtons(props) {
           />
         }
       })}
+      <CprButtonIcon
+        icon='file-image'
+        onClick={chooseFile}
+      />
     </div>
   )
 }
