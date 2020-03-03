@@ -5,6 +5,7 @@ import RichTextButtons from './rich-text-buttons.component'
 import {CprButton} from 'canopy-styleguide'
 import CkExample from './ckeditor.component'
 import { useEffect } from 'react'
+import Accusoft from './accusoft.component'
 
 export default function MainContainer (props) {
 
@@ -18,21 +19,28 @@ export default function MainContainer (props) {
     <div className='mainContainer'>
       <div style={{margin: 20}}>
         <CprButton actionType='flat' onClick={() => setTechnology('bandicoot')} disabled={technology === 'bandicoot'}>Bandicoot</CprButton>
-        <CprButton actionType='flat' onClick={() => setTechnology('ck')} disabled={technology==='ck'}>CkEditor</CprButton>
         <CprButton actionType='flat' onClick={() => setTechnology('accusoft')} disabled={technology === 'accusoft'}>Accusoft</CprButton>
+        <CprButton actionType='flat' onClick={() => setTechnology('ck')} disabled={technology==='ck'}>CkEditor</CprButton>
       </div>
       <div className='centerContainer'>
         {
           technology === 'bandicoot' && (
-            <RichTextContainer>
-              <RichTextButtons />
-              <div className='document'>
-                <RichTextEditor
-                  className='richTextEditor'
-                  sanitizeHTML={a => a}
-                />
-              </div>
-            </RichTextContainer>
+            <div style={{width: '814px',  margin: 'auto'}}>
+              <RichTextContainer>
+                <RichTextButtons />
+                <div className='document'>
+                  <RichTextEditor
+                    className='richTextEditor'
+                    sanitizeHTML={a => a}
+                  />
+                </div>
+              </RichTextContainer>
+            </div>
+          )
+        }
+        {
+          technology === 'accusoft' && (
+            <Accusoft />
           )
         }
         {
