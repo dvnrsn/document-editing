@@ -5,21 +5,9 @@ import './main.css'
 export default function Accusoft(props) {
 
   const [submit, setSubmit] = useState()
-  const [sessionId, setSessionId] = useState(localStorage.getItem('sessionId'))
+  const [sessionId, setSessionId] = useState()
   const inputRef = useRef()
   const [documentIDs, setDocumentIDs] = useState(localStorage.getItem('documentIds') ? JSON.parse(localStorage.getItem('documentIds')) : [])
-
-  useEffect(() => {
-    if (sessionId) {
-      localStorage.setItem('sessionId', sessionId)
-    }
-  }, [sessionId])
-
-  useEffect(() => {
-    fetch('/api/greeting')
-      .then(res => res.json())
-      .then(a => console.log(a))
-  },[])
 
   useEffect(() => {
     if (submit && inputRef.current.files.length) {
@@ -47,8 +35,22 @@ export default function Accusoft(props) {
   }, [submit, inputRef.current])
 
   const handleSubmit = e => e.preventDefault() || setSubmit(true)
+
+  const createNew = () => {
+    fetch('http://localhost:3000/doc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title: "My cool document" })
+      })
+      .then(res => res.json())
+      .then(a => setSessionId(a.id))
+  }
+
   return (
     <>
+      <button onClick={createNew}>create new</button>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
           <label htmlFor="file">Choose file to upload</label>
