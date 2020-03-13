@@ -16,6 +16,12 @@ export default function Accusoft(props) {
   }, [sessionId])
 
   useEffect(() => {
+    fetch('/api/greeting')
+      .then(res => res.json())
+      .then(a => console.log(a))
+  },[])
+
+  useEffect(() => {
     if (submit && inputRef.current.files.length) {
       setSubmit()
       fetch('https://prizmdoc-integ.canopy.ninja/api/v1/documents', {
