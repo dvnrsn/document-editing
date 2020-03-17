@@ -8,6 +8,8 @@ export default function Accusoft(props) {
   const [sessionId, setSessionId] = useState()
   const inputRef = useRef()
   const [documentIDs, setDocumentIDs] = useState(localStorage.getItem('documentIds') ? JSON.parse(localStorage.getItem('documentIds')) : [])
+  const [docList, setDocList] = useState([]);
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     if (submit && inputRef.current.files.length) {
@@ -34,23 +36,59 @@ export default function Accusoft(props) {
 
   }, [submit, inputRef.current])
 
+  useEffect(() => {
+    getDocs();
+  }, []);
+
   const handleSubmit = e => e.preventDefault() || setSubmit(true)
 
-  const createNew = () => {
+  const createNew = (title) => {
     fetch('http://localhost:3000/doc', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title: "My cool document" })
+        body: JSON.stringify({ title })
       })
       .then(res => res.json())
+      .then(a => {
+        setSessionId(a.id);
+        getDocs();
+      })
+  }
+
+  function getDocs() {
+    fetch('http://localhost:3000/doc', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(res => res.json())
+      .then(a => setDocList(a))
+  }
+
+  function getDoc(id) {
+    fetch(`http://localhost:3000/doc/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(res => res.json())
       .then(a => setSessionId(a.id))
   }
 
   return (
     <>
-      <button onClick={createNew}>create new</button>
+      <strong>Docs:</strong>
+      <div className="doc-container">
+        {docList.map(doc => (
+          <div className="doc-item" onClick={() => getDoc(doc.id)}>
+            {doc.title}
+          </div>
+        ))}
+      </div>
+      <button onClick={() => createNew(title || 'My cool document')}>create new</button>
+      <input type="text" placeholder="My cool document" value={title} onChange={e => setTitle(e.target.value)}/>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
           <label htmlFor="file">Choose file to upload</label>

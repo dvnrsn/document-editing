@@ -77,3 +77,22 @@
   box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );
   margin: 0 auto;
 }
+
+.doc-container {
+  margin-bottom: 20px;
+}
+
+.doc-item {
+  border-bottom: solid 1px #d3d3d3;
+  padding: 4px 8px;
+  font-size: 16px;
+}
+
+.doc-item:hover {
+  cursor: pointer;
+  background-color: #e3e3e3;
+}
+
+.doc-container > .doc-item:last-child {
+  border: none;
+}
