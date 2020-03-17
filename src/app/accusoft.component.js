@@ -67,12 +67,22 @@ export default function Accusoft(props) {
       .then(a => setDocList(a))
   }
 
+  function getDoc(id) {
+    fetch(`http://localhost:3000/doc/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(res => res.json())
+      .then(a => setSessionId(a.id))
+  }
+
   return (
     <>
       <strong>Docs:</strong>
       <div className="doc-container">
         {docList.map(doc => (
-          <div className="doc-item" onClick={() => setSessionId(doc.id)}>
+          <div className="doc-item" onClick={() => getDoc(doc.id)}>
             {doc.title}
           </div>
         ))}
