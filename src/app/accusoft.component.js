@@ -7,9 +7,24 @@ export default function Accusoft(props) {
   const [submit, setSubmit] = useState()
   const [sessionId, setSessionId] = useState()
   const inputRef = useRef()
-  const [documentIDs, setDocumentIDs] = useState(localStorage.getItem('documentIds') ? JSON.parse(localStorage.getItem('documentIds')) : [])
+  const [documentId, setDocumentId] = useState(localStorage.getItem('documentId') ? JSON.parse(localStorage.getItem('documentId')) : [])
   const [docList, setDocList] = useState([]);
   const [title, setTitle] = useState('');
+  const [user, setUser] = useState({});
+  const [editor, setEditor] = useState();
+
+  useEffect(() => {
+    if (documentId) {
+      fetch('https://prizmdoc-integ.canopy.ninja/api/v1/sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "documentId": documentId
+        })
+      }).then(res => res.json())
+        .then(res => console.log(res) || setSessionId(res.sessionId))
+    }
+  }, [])
 
   useEffect(() => {
     if (submit && inputRef.current.files.length) {
@@ -23,6 +38,7 @@ export default function Accusoft(props) {
           return response.json();
         })
         .then(res => {
+          localStorage.setItem('documentId', JSON.stringify(res.documentId));
           fetch('https://prizmdoc-integ.canopy.ninja/api/v1/sessions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -38,6 +54,7 @@ export default function Accusoft(props) {
 
   useEffect(() => {
     getDocs();
+    getUser();
   }, []);
 
   const handleSubmit = e => e.preventDefault() || setSubmit(true)
@@ -77,6 +94,20 @@ export default function Accusoft(props) {
       .then(a => setSessionId(a.id))
   }
 
+  function getUser() {
+    fetch(`http://localhost:3000/user`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(res => res.json())
+      .then(user => setUser(user))
+  }
+
+  function insertText(name) {
+    editor.insertText({ text: name });
+  }
+
   return (
     <>
       <strong>Docs:</strong>
@@ -87,8 +118,13 @@ export default function Accusoft(props) {
           </div>
         ))}
       </div>
-      <button onClick={() => createNew(title || 'My cool document')}>create new</button>
-      <input type="text" placeholder="My cool document" value={title} onChange={e => setTitle(e.target.value)}/>
+      <div className="create-insert">
+        <div>
+          <button onClick={() => createNew(title || 'My cool document')}>create new</button>
+          <input type="text" placeholder="My cool document" value={title} onChange={e => setTitle(e.target.value)}/>
+        </div>
+        <button onClick={() => insertText(user.name || '')}>Insert username</button>
+      </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
           <label htmlFor="file">Choose file to upload</label>
@@ -98,7 +134,7 @@ export default function Accusoft(props) {
           <button>Submit</button>
         </div>
       </form>
-      {sessionId && <EditorComponent sessionId={sessionId} />}
+      {sessionId && <EditorComponent sessionId={sessionId} setEditor={setEditor} />}
     </>
   )
 }
