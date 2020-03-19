@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 
 export default function Editor(props) {
   const container = useRef()
+  const [hasRun, setHasRun] = useState()
   const editor = new PrizmDocEditor({
     baseUrl: 'https://prizmdoc-integ.canopy.ninja/',
     sessionId: props.sessionId
@@ -9,14 +10,12 @@ export default function Editor(props) {
 
   useEffect(() => {
     if (container.current) {
-      (async function () {
-        const editorApi = await editor.embed({
-          container: container.current
-        });
-        props.setEditor(editorApi);
-      })();
+      setHasRun(true)
+      editor.embed({
+        container: container.current
+      }).then(editor => props.setEditor(editor))
     }
-  }, [container.current])
+  }, [container.current, hasRun])
 
   return (
     <div ref={container} style={{ height: '100%' }}>
