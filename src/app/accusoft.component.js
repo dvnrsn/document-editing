@@ -123,7 +123,10 @@ export default function Accusoft(props) {
           <button onClick={() => createNew(title || 'My cool document')}>create new</button>
           <input type="text" placeholder="My cool document" value={title} onChange={e => setTitle(e.target.value)}/>
         </div>
-        <button onClick={() => insertText(user.name || '')}>Insert username</button>
+        <div>
+          <button onClick={() => insertText(user.name || '')}>Insert username</button>
+          <button onClick={() => insertText('<<name>>')}>Insert template name</button>
+        </div>
       </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
