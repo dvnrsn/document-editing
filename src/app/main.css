@@ -96,3 +96,9 @@
 .doc-container > .doc-item:last-child {
   border: none;
 }
+
+.create-insert {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+}

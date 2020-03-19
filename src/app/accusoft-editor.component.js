@@ -13,6 +13,7 @@ export default function Editor(props) {
         const editorApi = await editor.embed({
           container: container.current
         });
+        props.setEditor(editorApi);
       })();
     }
   }, [container.current])
@@ -22,5 +23,4 @@ export default function Editor(props) {
 
     </div>
   )
-
 }
