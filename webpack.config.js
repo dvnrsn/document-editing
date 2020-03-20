@@ -5,7 +5,10 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': 'http://localhost:3001'
-    }
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
   },
   output: {
     libraryTarget: "system"
