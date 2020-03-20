@@ -9,7 +9,7 @@ export default function Editor(props) {
   });
 
   useEffect(() => {
-    if (container.current) {
+    if (container.current && !hasRun) {
       setHasRun(true)
       editor.embed({
         container: container.current
