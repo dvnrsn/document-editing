@@ -85,7 +85,7 @@ export default function Accusoft(props) {
   }
 
   function getDoc(id) {
-    fetch(`http://localhost:3000/doc/${id}`, {
+    fetch(`http://localhost:3000/doc/${id}?user=${user.id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
