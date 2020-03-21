@@ -33,6 +33,7 @@
     "@ckeditor/ckeditor5-build-decoupled-document": "^17.0.0",
     "@ckeditor/ckeditor5-react": "^2.1.0",
     "bandicoot": "^4.1.1",
+    "node-fetch": "^2.6.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "sqlite3": "^4.1.1"
