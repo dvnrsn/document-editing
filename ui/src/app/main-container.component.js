@@ -18,9 +18,7 @@ export default function MainContainer (props) {
   return (
     <div className='mainContainer'>
       <div style={{margin: 20}}>
-        <CprButton actionType='flat' onClick={() => setTechnology('bandicoot')} disabled={technology === 'bandicoot'}>Bandicoot</CprButton>
         <CprButton actionType='flat' onClick={() => setTechnology('accusoft')} disabled={technology === 'accusoft'}>Accusoft</CprButton>
-        <CprButton actionType='flat' onClick={() => setTechnology('ck')} disabled={technology==='ck'}>CkEditor</CprButton>
       </div>
       <div className='centerContainer'>
         {

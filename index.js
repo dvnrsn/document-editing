@@ -4,6 +4,7 @@ const pino = require('express-pino-logger')();
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs')
 const fetch = require('node-fetch')
+const cors = require('cors')
 
 const path = require('path')
 const dbPath = path.resolve(__dirname, 'prizmdoc.db')
@@ -35,6 +36,7 @@ db.serialize(() => {
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(pino);
+app.use(cors())
 app.use(express.json());
 
 app.get('/api/greeting', (req, res) => {
