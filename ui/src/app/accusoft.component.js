@@ -149,7 +149,7 @@ export default function Accusoft(props) {
         <div className="create-insert">
           <div>
             <input type="text" id='create-new-input' placeholder="enter title" value={title} maxLength={20} onChange={e => setTitle(e.target.value)}/>
-            <button onClick={() => createNew(title || 'My cool document')}>create new</button>
+            <button onClick={() => createNew(title || 'My cool document')} style={{marginLeft: 10}}>create new</button>
           </div>
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             <div>
