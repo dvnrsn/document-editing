@@ -47,15 +47,12 @@ app.get('/api/greeting', (req, res) => {
 });
 
 app.post('/doc', (req, res) => {
-  // get empty and post to accusoft
-  let readStream = fs.createReadStream(path.resolve(__dirname, 'empty.docx'))
-  return fetch('https://prizmdoc-integ.canopy.ninja/api/v1/documents', {
+  return fetch('https://prizmdoc-integ.canopy.ninja/api/v1/documents/f-xwZXhBvA9Azmf85mC1l-bzAUvaOp3d2i6rA2ttCLzd/actions/clone', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       filename: 'my-file.docx'
-    },
-    body: readStream,
+    }
   }).then(r => r.json()).then(body => {
     console.log(`Document uploaded successfully, documentId: ${body.documentId}`);
     db.run(`INSERT INTO documents ('prizmDocId', 'title', 'clientId') VALUES ('${body.documentId}', '${req.body.title}', '1')`)
