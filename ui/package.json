@@ -11,6 +11,8 @@
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.4.2",
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "gh-pages": "^2.2.0",
@@ -28,12 +30,17 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "cors": "^2.8.5",
-    "node-fetch": "^2.6.0",
-    "sqlite3": "^4.1.1"
+    "@ckeditor/ckeditor5-build-decoupled-document": "^17.0.0",
+    "@ckeditor/ckeditor5-react": "^2.1.0",
+    "bandicoot": "^4.1.1",
+    "react": "^16.12.0"
   },
   "scripts": {
-    "server": "node-env-run . --exec nodemon | pino-colada",
+    "build": "webpack",
+    "start": "webpack-dev-server --host 0.0.0.0",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist",
+    "server": "node-env-run server --exec nodemon | pino-colada",
     "dev": "run-p server start",
     "json-serve": "json-server --watch db.json"
   }

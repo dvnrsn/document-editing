@@ -60,7 +60,7 @@ export default function Accusoft(props) {
   const handleSubmit = e => e.preventDefault() || setSubmit(true)
 
   const createNew = (title) => {
-    fetch('http://localhost:3000/doc', {
+    fetch('http://localhost:3001/doc', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ export default function Accusoft(props) {
   }
 
   function getDocs() {
-    fetch('http://localhost:3000/doc', {
+    fetch('http://localhost:3001/docs', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ export default function Accusoft(props) {
   }
 
   function getDoc(id) {
-    fetch(`http://localhost:3000/doc/${id}?user=${user.id}`, {
+    fetch(`http://localhost:3001/doc/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ export default function Accusoft(props) {
   }
 
   function getUser() {
-    fetch(`http://localhost:3000/user`, {
+    fetch(`http://localhost:3001/user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
