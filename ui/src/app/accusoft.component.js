@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import EditorComponent from './accusoft-editor.component'
 import './main.css'
-import fetch from 'node-fetch'
 
 export default function Accusoft(props) {
 
@@ -23,7 +22,7 @@ export default function Accusoft(props) {
           "documentId": documentId
         })
       }).then(res => res.json())
-        .then(res => console.log(res) || setSessionId(res.sessionId))
+        .then(res => setSessionId(res.sessionId))
     }
   }, [])
 
