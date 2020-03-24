@@ -6,7 +6,7 @@
   box-shadow: 0 10px 30px -24px #b3b3b3;
 }
 .centerContainer {
-  width: 910px;
+  width: 1900px;
   margin: 20px auto;
   height: 80%;
 }
@@ -101,4 +101,21 @@
   display: flex;
   justify-content: space-between;
   padding: 16px 0;
+  width: 1150px;
 }
+
+.centered-block {
+  margin: 0 auto;
+}
+
+.docs-left {
+  min-width: 270px;
+  margin-top: 100px;
+  position: absolute;
+}
+
+.accusoft {
+  display: flex;
+  height: 100%;
+}
+

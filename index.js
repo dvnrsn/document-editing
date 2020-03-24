@@ -25,10 +25,11 @@ db.serialize(() => {
     .run('CREATE TABLE IF NOT EXISTS documents (prizmDocId, title, clientId)')
     .run('DELETE FROM clients')
     .run(`INSERT INTO clients(name) VALUES('Melissa Harper');`)
-    .run(`INSERT INTO documents (prizmDocId, title, clientId) VALUES ('docId', 'someTitle', '1')`)
+    // .run(`INSERT INTO documents (prizmDocId, title, clientId) VALUES ('docId', 'someTitle', '1')`)
     // .all('SELECT rowid, * FROM clients;', [], (err, rows) => {
     //   console.log(rows)
-    // }).all('SELECT rowid, * FROM documents', [], (err, rows) => {
+    // })
+    // .all('SELECT rowid, * FROM documents', [], (err, rows) => {
     //   console.log(rows)
     // })
 })
@@ -69,6 +70,21 @@ app.post('/doc', (req, res) => {
     }).then(data => data.json())
       .then(data => res.send(JSON.stringify({sessionId: data.sessionId})))
   }).catch('error saving Id')
+})
+
+app.delete('/doc', (req, res) => {
+  const sql = 'DELETE FROM documents WHERE rowid=?'
+  db.run(sql, req.body.id, err => {
+    if (err) next(err)
+  })
+  return res.sendStatus(200)
+})
+
+app.post('/delete-all', (req, res, next) => {
+  db.run('DELETE FROM documents', err => {
+    if (err) next(err)
+  })
+  return res.sendStatus(200)
 })
 
 app.get('/docs', (req, res) => {
