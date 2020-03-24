@@ -9,7 +9,7 @@ import Accusoft from './accusoft.component'
 
 export default function MainContainer (props) {
 
-  const [technology, setTechnology] = useState(localStorage.getItem('technology') || 'bandicoot')
+  const [technology, setTechnology] = useState('accusoft')
 
   useEffect(() => {
     localStorage.setItem('technology', technology)
@@ -17,8 +17,7 @@ export default function MainContainer (props) {
 
   return (
     <div className='mainContainer'>
-      <div style={{margin: 20}}>
-        <CprButton actionType='flat' onClick={() => setTechnology('accusoft')} disabled={technology === 'accusoft'}>Accusoft</CprButton>
+      <div style={{height: 30}}>
       </div>
       <div className='centerContainer'>
         {
