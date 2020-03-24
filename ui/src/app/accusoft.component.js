@@ -114,8 +114,7 @@ export default function Accusoft(props) {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(res => res.json())
-      .then(() => setDocList([]))
+    }).then(res => res.ok && setDocList([]))
   }
 
   function deleteDoc(id) {
