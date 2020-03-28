@@ -17,8 +17,6 @@ export default function MainContainer (props) {
 
   return (
     <div className='mainContainer'>
-      <div style={{height: 30}}>
-      </div>
       <div className='centerContainer'>
         {
           technology === 'bandicoot' && (
