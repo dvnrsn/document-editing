@@ -60,7 +60,7 @@ export default function Accusoft(props) {
   const handleSubmit = e => e.preventDefault() || setSubmit(true)
 
   const createNew = (title) => {
-    fetch('134.209.89.163:3001/doc', {
+    fetch('http://134.209.89.163:3001/doc', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export default function Accusoft(props) {
   }
 
   function getDocs() {
-    fetch('134.209.89.163:3001/docs', {
+    fetch('http://134.209.89.163:3001/docs', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ export default function Accusoft(props) {
   }
 
   function getDoc(doc) {
-    fetch(`134.209.89.163:3001/doc/${doc.rowid}`, {
+    fetch(`http://134.209.89.163:3001/doc/${doc.rowid}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ export default function Accusoft(props) {
   }
 
   function getUser() {
-    fetch(`134.209.89.163:3001/user`, {
+    fetch(`http://134.209.89.163:3001/user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -109,7 +109,7 @@ export default function Accusoft(props) {
   }
 
   function deleteAll() {
-    fetch(`134.209.89.163:3001/delete-all`, {
+    fetch(`http://134.209.89.163:3001/delete-all`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ export default function Accusoft(props) {
   }
 
   function deleteDoc(id) {
-    fetch('134.209.89.163:3001/doc', {
+    fetch('http://134.209.89.163:3001/doc', {
       method: 'DELETE',
       body: JSON.stringify({ id }),
       headers: {
